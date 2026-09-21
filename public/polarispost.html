@@ -234,30 +234,11 @@
 
         let currentFilter = 'all';
 
-        // Retrieve items from localStorage (published by admin)
-        function getPublishedItems() {
-            return JSON.parse(localStorage.getItem('polaris_published_content')) || [
-                // Sample default content if no admin posts exist yet
-                {
-                    id: 1,
-                    type: 'post',
-                    title: 'Polaris FC Launches New Season Campaign',
-                    date: '2026-09-08',
-                    content: 'Polaris FC is excited to begin training sessions for the upcoming season. All KTRH staff and guest players are invited to join practice sessions at the hospital grounds.',
-                    author: 'Admin'
-                },
-                {
-                    id: 2,
-                    type: 'event',
-                    title: 'Daktari Cup - Opening Match vs St. Camillus FC',
-                    date: '2026-09-15',
-                    location: 'Kisii Stadium',
-                    time: '16:00 EAT',
-                    content: 'Come support Polaris FC as we kick off our defense of the Daktari Cup title against St. Camillus FC.',
-                    author: 'Team Manager'
-                }
-            ];
-        }
+       
+        // Retrieve items from localStorage without fallback sample posts
+function getPublishedItems() {
+    return JSON.parse(localStorage.getItem('polaris_published_content')) || [];
+}
 
         // Render posts/events into the page
         function renderFeed() {
