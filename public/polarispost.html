@@ -4,195 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polaris FC - Latest Posts & Upcoming Events</title>
-    <style>
-        /* Base Styling */
-        :root {
-            --primary-color: #0d47a1;
-            --secondary-color: #1976d2;
-            --accent-color: #00e676;
-            --dark-color: #1a202c;
-            --light-bg: #f4f7f6;
-            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-bg);
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* Navigation Header */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: 1px;
-        }
-
-        header p {
-            font-size: 1.1rem;
-            margin-top: 8px;
-            color: #e3f2fd;
-        }
-
-        /* Container Layout */
-        .container {
-            max-width: 1100px;
-            margin: -20px auto 40px auto;
-            padding: 0 20px;
-        }
-
-        /* Controls & Navigation Tabs */
-        .feed-controls {
-            background: #ffffff;
-            border-radius: 8px;
-            padding: 15px 20px;
-            box-shadow: var(--card-shadow);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 10px;
-        }
-
-        .tab-btn {
-            background: none;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .tab-btn.active, .tab-btn:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .search-box {
-            padding: 8px 15px;
-            border: 1px solid #ccc;
-            border-radius: 20px;
-            font-size: 0.95rem;
-            width: 250px;
-        }
-
-        /* Post & Event Cards Grid */
-        .feed-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        .feed-card {
-            background: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s ease-in-out;
-        }
-
-        .feed-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-type-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            align-self: flex-start;
-        }
-
-        .badge-post {
-            background-color: #e3f2fd;
-            color: #0d47a1;
-        }
-
-        .badge-event {
-            background-color: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .card-content {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card-title {
-            margin: 0 0 10px 0;
-            color: var(--dark-color);
-            font-size: 1.3rem;
-        }
-
-        .card-meta {
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .card-body {
-            font-size: 0.95rem;
-            color: #444;
-            flex-grow: 1;
-            margin-bottom: 15px;
-        }
-
-        .event-details {
-            background-color: #f8fafc;
-            border-left: 3px solid #2e7d32;
-            padding: 10px 12px;
-            border-radius: 0 5px 5px 0;
-            font-size: 0.88rem;
-            margin-bottom: 15px;
-        }
-
-        .event-details p {
-            margin: 4px 0;
-        }
-
-        .empty-feed {
-            text-align: center;
-            grid-column: 1 / -1;
-            padding: 50px 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: var(--card-shadow);
-            color: #666;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: var(--dark-color);
-            color: white;
-            margin-top: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/polarispost.css">
 </head>
 <body>
 
@@ -203,7 +15,7 @@
     </header>
 
     <div class="container">
-        
+
         <!-- Controls & Tabs -->
         <div class="feed-controls">
             <div class="tabs">
@@ -211,7 +23,7 @@
                 <button class="tab-btn" data-filter="post">News & Posts</button>
                 <button class="tab-btn" data-filter="event">Upcoming Events</button>
             </div>
-            
+
             <input type="text" id="searchInput" class="search-box" placeholder="Search posts or events...">
         </div>
 
@@ -226,93 +38,6 @@
         <p>&copy; 2026 Polaris FC - Kisii Teaching & Referral Hospital (KTRH). All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript Data Sync -->
-    <script>
-        const feedContainer = document.getElementById('feedContainer');
-        const searchInput = document.getElementById('searchInput');
-        const tabButtons = document.querySelectorAll('.tab-btn');
-
-        let currentFilter = 'all';
-
-       
-        // Retrieve items from localStorage without fallback sample posts
-function getPublishedItems() {
-    return JSON.parse(localStorage.getItem('polaris_published_content')) || [];
-}
-
-        // Render posts/events into the page
-        function renderFeed() {
-            const items = getPublishedItems();
-            const searchTerm = searchInput.value.toLowerCase();
-
-            // Filter items by tab and search box
-            const filteredItems = items.filter(item => {
-                const matchesTab = currentFilter === 'all' || item.type === currentFilter;
-                const matchesSearch = item.title.toLowerCase().includes(searchTerm) || 
-                                      item.content.toLowerCase().includes(searchTerm);
-                return matchesTab && matchesSearch;
-            });
-
-            feedContainer.innerHTML = '';
-
-            if (filteredItems.length === 0) {
-                feedContainer.innerHTML = `
-                    <div class="empty-feed">
-                        <h3>No posts or events found</h3>
-                        <p>Check back later for new announcements from the Polaris FC management.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            // Generate HTML for each post or event
-            filteredItems.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'feed-card';
-
-                const isEvent = item.type === 'event';
-                const badgeText = isEvent ? 'Upcoming Event' : 'News & Post';
-                const badgeClass = isEvent ? 'badge-event' : 'badge-post';
-
-                card.innerHTML = `
-                    <div class="card-content">
-                        <span class="card-type-badge ${badgeClass}">${badgeText}</span>
-                        <h2 class="card-title">${item.title}</h2>
-                        <div class="card-meta">Posted on ${item.date} ${item.author ? 'by ' + item.author : ''}</div>
-                        
-                        ${isEvent ? `
-                            <div class="event-details">
-                                <p>📅 <strong>Date:</strong> ${item.date}</p>
-                                ${item.time ? `<p>⏰ <strong>Time:</strong> ${item.time}</p>` : ''}
-                                ${item.location ? `<p>📍 <strong>Venue:</strong> ${item.location}</p>` : ''}
-                            </div>
-                        ` : ''}
-
-                        <div class="card-body">
-                            <p>${item.content}</p>
-                        </div>
-                    </div>
-                `;
-
-                feedContainer.appendChild(card);
-            });
-        }
-
-        // Tab Filter Switching
-        tabButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                tabButtons.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                currentFilter = this.getAttribute('data-filter');
-                renderFeed();
-            });
-        });
-
-        // Search Input Handling
-        searchInput.addEventListener('input', renderFeed);
-
-        // Initial Load
-        renderFeed();
-    </script>
+    <script src="js/polarispost.js"></script>
 </body>
 </html>
